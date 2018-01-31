@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Do! Grant County{% endblock %}
+
+{% block content %}
+    
+    Events
+
+    <div class="control">
+        <div class="flex--1">{{ control.previous.submit(class_='control') }}</div>
+        <div class="month flex--5">{{ month }} {{ year }}</div>
+        <div class="flex--1">{{ control.next.submit(class_='control') }}</div>
+    </div>
+
+    <div class="events">
+        {% for event in events %}
+        <div class="event">
+            <div class="title">{{ event.title }}</div>
+            <div class="date">{{ event.start_time }} - {{ event.end_time }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+<script>
+
+</script>
+
+{% endblock %}

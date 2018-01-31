@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Do! Grant County" />
+    <link rel="shortcut icon" href="/static/img/dgc-144.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/static/img/dgc-70.png"/>
+	<link rel="apple-touch-icon" sizes="114x114" href="/static/img/dgc-114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/img/dgc-144.png" />
+
+    <link rel="stylesheet" type="text/css" href="/static/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css?ver=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/remodal.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/remodal-default-theme.css?ver=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/remodal.js"></script>
+    <script type="text/javascript" src="/static/js/cropbox-min.js"></script>
+
+
+    <!--
+    <script type="text/javascript" src="/static/js/polyfill.js"></script>
+    <script type="text/javascript" src="/static/js/polyfill.position-sticky.js"></script>
+    -->
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="animated fadeIn">
+
+<div id="header">
+</div>
+
+<div id="page">
+{% block content %}
+
+{% endblock %}
+</div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div id="alerts" role="alert">
+                {% for message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+
+<footer>
+</footer>
+
+
+<script>
+
+</script>
+
+
+</body>
+</html>
