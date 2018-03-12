@@ -1,0 +1,183 @@
+{% extends 'admin-base.html' %}
+
+{% block title %}Admin - Edit Event{% endblock %}
+
+{% block content %}
+
+    <div class="header">
+        <div class="flex-box max-width margin-center margin-side">
+            <div class="flex-2 flex-center logo-bar">
+                <a href="{{ url_for('admin') }}"><img class="logo" alt="DO GRANTCOUNTY" src="/static/img/logo-purple.svg"> <div class="label">Admin</div></a>
+            </div>
+            <div class="flex-5 flex-center menu-bar desktop">
+                <div class="menu now"><a href="{{ url_for('admin_events') }}">Events</a></div>
+                <div class="menu"><a href="{{ url_for('admin_categories') }}">Categories</a></div>
+                <div class="menu"><a href="{{ url_for('admin_questions') }}">Questions</a></div>
+                <div class="menu"><a href="{{ url_for('admin_settings') }}">Settings</a></div>
+                <div class="menu"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i></a></div>
+            </div>
+            <div class="flex flex-center menu-bar mobile">
+                <div class="menu-button" onclick="menu()"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="menu-bar-mobile" class="mobile">
+        <div class="menu-mobile now"><a href="{{ url_for('admin_events') }}"><i class="far fa-calendar-alt"></i> Events</a></div>
+        <div class="menu-mobile"><a href="{{ url_for('admin_categories') }}"><i class="fas fa-th-large"></i> Categories</a></div>
+        <div class="menu-mobile"><a href="{{ url_for('admin_questions') }}"><i class="far fa-question-circle"></i> Questions</a></div>
+        <div class="menu-mobile"><a href="{{ url_for('admin_settings') }}"><i class="fas fa-cog"></i> Settings</a></div>
+        <div class="padding"></div>
+        <div class="menu-mobile"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a></div>
+    </div>
+
+
+    {% if form.errors %}
+        <div id="alerts" role="alert">
+            {% for field_errors in form.errors %}
+                {% for error in form.errors[field_errors] %}
+                    <div class="alert">{{ error }}</div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+    <div class="page max-width margin-center">
+
+        <div class="new">
+            <h1><div>Edit Event</div></h1>
+            <form method="POST" enctype="multipart/form-data">
+
+                {{ form.csrf_token }}
+                <div class="section">
+                    <div class="flex-box-mobile icon icon-category">
+                        <div class="flex"><i class="fas fa-th-large"></i>{{ form.category(class="category") }}</div>
+                    </div>
+                    <br>
+                    <div class="flex-box-mobile icon">
+                        <div class="flex text-right-mobile"><i class="fas fa-magic"></i>{{ form.title(placeholder="Title", class="") }}</div>
+                        <div class="flex text-left-mobile"><i class="fas fa-users"></i>{{ form.organization(placeholder="Host (Organization)", class="") }}</div>
+                    </div>
+                    <div class="flex-box-mobile icon">
+                        <div class="flex"><i class="fas fa-align-left"></i>{{ form.description(placeholder="Description", class="") }}</div>
+                    </div>
+                    <div class="flex-box-mobile icon">
+                        <div class="flex"><i class="fas fa-map-marker-alt"></i>{{ form.location(placeholder="Location (Address)", class="") }}</div>
+                    </div>
+                    <br>
+                    <div class="flex-box-mobile icon">
+                        <div class="flex text-right-mobile"><i class="far fa-calendar"></i>{{ form.start_date(class_="", pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}") }}</div>
+                        <div class="flex text-left-mobile"><i class="far fa-clock"></i>{{ form.start_time(class="") }}</div>
+                    </div>
+                    <div class="flex-box-mobile icon">
+                        <div class="flex text-right-mobile"><i class="fas fa-calendar"></i>{{ form.end_date(class_="", pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}") }}</div>
+                        <div class="flex text-left-mobile"><i class="fas fa-clock"></i>{{ form.end_time(class="") }}</div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Contact</div>
+                    <div class="flex-box-mobile icon">
+                        <div class="flex text-right-mobile"><i class="fas fa-user"></i>{{ form.contact_name(placeholder="Name", class="") }}</div>
+                        <div class="flex text-left-mobile"><i class="far fa-envelope"></i>{{ form.contact_email(placeholder="Email", class="") }}</div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Optional</div>
+                    <div class="flex-box-mobile icon">
+                        <div class="flex text-right-mobile"><i class="fas fa-dollar-sign"></i>{{ form.cost(placeholder="Cost", class="") }}</div>
+                        <div class="flex text-left-mobile"><i class="fas fa-phone"></i>{{ form.contact_phone(placeholder="Phone", class="") }}</div>
+                    </div>
+                    <div class="flex-box-mobile icon">
+                        <div class="flex text-right-mobile"><i class="fas fa-globe"></i>{{ form.url(placeholder="Web URL", class="") }}</div>
+                        <div class="flex text-left-mobile"></div>
+                    </div>
+                    <br>
+                    <div class="flex-box-mobile">
+                        <div class="flex">
+                            {{ form.photo(class="hidden",onchange="choose_photo(this)") }}
+                            <div id="upload-photo" onclick="upload_photo()"><i class="fas fa-image"></i>Upload Photo
+                                <div id="error-photo"></div>
+                            </div>
+                            {% if form.old_photo.data == '' %}
+                                <img alt="" id="preview-photo" src="">
+                            {% else %}
+                                <img alt="" id="preview-photo" src="/static/event-pics/{{ form.old_photo.data }}">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-box-mobile">
+                    {{ form.submit(class="submit") }}
+                </div>
+                <br>
+                <a href="{{ url_for('admin_events') }}" class="link">Cancel</a>
+
+            </form>
+        </div>
+
+
+    </div>
+
+<script>
+var select = new SlimSelect({
+    select: '#category',
+    placeholder: 'Category&nbsp;&nbsp; <span style="font-size: 0.8rem;">(choose all that apply)</span>',
+    showSearch: false,
+    allowDeselect: true,
+    closeOnSelect: false
+});
+select.set([ {% for c in categories %} '{{ c }}', {% endfor %}]);
+
+function upload_photo() {
+    $('#photo').click();
+    return false;
+}
+
+var has_photo = false;
+var photo_type = "";
+function choose_photo(photo) {
+
+    var file = photo.files[0];
+    var imagefile = file.type;
+    photo_type = file.type.split("/")[1];
+
+    document.getElementById('error-photo').style.display = "none";
+
+    var match = ["image/jpeg","image/png","image/jpg","image/gif"];
+
+    if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]) || (imagefile==match[3]))) {
+        has_photo = false;
+        imageNotLoaded();
+        $('#photo').val('');
+        document.getElementById('error-photo').style.display = "block";
+        document.getElementById('error-photo').innerHTML = '<img class="error-icon" alt="" src="../img/error_invalid.png">Invalid file type (jpg, gif, png)';
+    } else {
+        if (file.size > 5000000) {
+            has_photo = false;
+            imageNotLoaded();
+            $('#photo').val('');
+            document.getElementById('error-photo').style.display = "block";
+            document.getElementById('error-photo').innerHTML = '<img class="error-icon" alt="" src="../img/error_invalid.png">Invalid file size. (Max: 5 MB)';
+        } else {
+            has_photo = true;
+            var reader = new FileReader();
+            reader.onload = imageIsLoaded;
+            reader.readAsDataURL(file);
+            //upload_photo()
+        }
+    }
+
+}
+function imageIsLoaded(e) {
+    $('#preview-photo').attr('src', e.target.result);
+}
+function imageNotLoaded() {
+    $('#preview-photo').attr('src', '../img/choose_image.png');
+}
+
+
+
+</script>
+
+{% endblock %}

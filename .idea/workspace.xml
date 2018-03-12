@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4625d6fa-abbd-41e2-96ae-427c3f0c7de0" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/dograntcounty$dograntcounty.coverage" NAME="dograntcounty Coverage Results" MODIFIED="1520636410545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="dograntcounty.sqlite" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="645">
+              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="57" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="event.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/event.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1140">
+              <caret line="76" column="28" lean-forward="false" selection-start-line="76" selection-start-column="28" selection-end-line="76" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dograntcounty.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dograntcounty.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7140">
+              <caret line="476" column="19" lean-forward="false" selection-start-line="476" selection-start-column="19" selection-end-line="476" selection-end-column="19" />
+              <folding>
+                <element signature="e#15#108#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding>
+                <marker date="1520660923691" expanded="true" signature="1364:1383" ph="SELECT * FRO... event" />
+                <marker date="1520660923691" expanded="true" signature="1439:1471" ph="SELECT * FRO... event" />
+                <marker date="1520660923691" expanded="true" signature="1549:1587" ph="SELECT * FRO... event" />
+                <marker date="1520660923691" expanded="true" signature="2067:2195" ph="SELECT * FRO... event" />
+                <marker date="1520660923691" expanded="true" signature="2336:2403" ph="SELECT * FRO... event_category" />
+                <marker date="1520660923691" expanded="true" signature="8853:9038" ph="SELECT * FRO... event" />
+                <marker date="1520660923691" expanded="true" signature="9342:9714" ph="INSERT INTO event... " />
+                <marker date="1520660923691" expanded="true" signature="10372:10483" ph="INSERT INTO event_category... " />
+                <marker date="1520660923691" expanded="true" signature="10807:10859" ph="UPDATE event... " />
+                <marker date="1520660923691" expanded="true" signature="11098:11145" ph="SELECT * FRO... event_category" />
+                <marker date="1520660923691" expanded="true" signature="11293:11328" ph="SELECT * FRO... category" />
+                <marker date="1520660923691" expanded="true" signature="11393:11430" ph="SELECT * FRO... category" />
+                <marker date="1520660923691" expanded="true" signature="12191:12241" ph="SELECT * FRO... event_category" />
+                <marker date="1520660923691" expanded="true" signature="12514:12544" ph="SELECT * FRO... faq" />
+                <marker date="1520660923691" expanded="true" signature="12608:12625" ph="SELECT * FRO... faq" />
+                <marker date="1520660923691" expanded="true" signature="13352:13386" ph="SELECT * FRO... setting" />
+                <marker date="1520660923691" expanded="true" signature="13699:13827" ph="SELECT * FRO... event" />
+                <marker date="1520660923691" expanded="true" signature="13974:14041" ph="SELECT * FRO... event_category" />
+                <marker date="1520660923691" expanded="true" signature="14243:14428" ph="SELECT * FRO... event" />
+                <marker date="1520660923691" expanded="true" signature="17931:17975" ph="SELECT * FRO... edit_event" />
+                <marker date="1520660923691" expanded="true" signature="18038:18096" ph="SELECT * FRO... event" />
+                <marker date="1520660923691" expanded="true" signature="22745:22803" ph="UPDATE event... " />
+                <marker date="1520660923691" expanded="true" signature="23009:23062" ph="DELETE FROM event_category... " />
+                <marker date="1520660923691" expanded="true" signature="23157:23206" ph="DELETE FROM edit_event... " />
+                <marker date="1520660923691" expanded="true" signature="23294:23332" ph="DELETE FROM event... " />
+                <marker date="1520660923691" expanded="true" signature="23521:23558" ph="SELECT * FRO... edit_event" />
+                <marker date="1520660923691" expanded="true" signature="23633:23670" ph="SELECT * FRO... edit_event" />
+                <marker date="1520660923691" expanded="true" signature="23729:24159" ph="UPDATE event... " />
+                <marker date="1520660923691" expanded="true" signature="24997:25040" ph="DELETE FROM edit_event... " />
+                <marker date="1520660923691" expanded="true" signature="25254:25297" ph="DELETE FROM edit_event... " />
+                <marker date="1520660923691" expanded="true" signature="25651:26053" ph="UPDATE event... " />
+                <marker date="1520660923691" expanded="true" signature="26622:26675" ph="DELETE FROM event_category... " />
+                <marker date="1520660923691" expanded="true" signature="26856:26967" ph="INSERT INTO event_category... " />
+                <marker date="1520660923691" expanded="true" signature="27475:27877" ph="INSERT INTO edit_event... " />
+                <marker date="1520660923691" expanded="true" signature="28602:28655" ph="DELETE FROM event_category... " />
+                <marker date="1520660923691" expanded="true" signature="28842:28953" ph="INSERT INTO event_category... " />
+                <marker date="1520660923691" expanded="true" signature="29314:29384" ph="INSERT INTO category... " />
+                <marker date="1520660923691" expanded="true" signature="29700:29779" ph="UPDATE category... " />
+                <marker date="1520660923691" expanded="true" signature="30022:30081" ph="DELETE FROM event_category... " />
+                <marker date="1520660923691" expanded="true" signature="30181:30225" ph="DELETE FROM category... " />
+                <marker date="1520660923691" expanded="true" signature="30524:30622" ph="UPDATE faq... " />
+                <marker date="1520660923691" expanded="true" signature="30889:30928" ph="DELETE FROM faq... " />
+                <marker date="1520660923691" expanded="true" signature="31195:31283" ph="INSERT INTO faq... " />
+                <marker date="1520660923691" expanded="true" signature="31624:31725" ph="UPDATE setting... " />
+                <marker date="1520660923691" expanded="true" signature="32083:32180" ph="UPDATE setting... " />
+                <marker date="1520660923691" expanded="true" signature="32556:32709" ph="UPDATE setting... " />
+                <marker date="1520660923691" expanded="true" signature="33235:33628" ph="INSERT INTO event... " />
+                <marker date="1520660923691" expanded="true" signature="34301:34412" ph="INSERT INTO event_category... " />
+                <marker date="1520660923691" expanded="true" signature="34737:34775" ph="SELECT * FRO... event" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin-base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin-base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" column="8" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/new.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new-event.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/new-event.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1515">
+              <caret line="101" column="105" lean-forward="false" selection-start-line="101" selection-start-column="102" selection-end-line="101" selection-end-column="105" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="prettydropdowns.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/prettydropdowns.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="855">
+              <caret line="57" column="27" lean-forward="false" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Flask Main" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>edit-ev</find>
+      <find>re.match</find>
+      <find>cost =</find>
+      <find>['cost'] =</find>
+      <find>['cost']</find>
+      <find>daterange</find>
+      <find>events</find>
+      <find>cost</find>
+      <find>null, null, null,</find>
+      <find>'cost'] =</find>
+      <find>pre</find>
+      <find>float(</find>
+      <find>ar_ev</find>
+      <find>events/&lt;year</find>
+      <find>/new</find>
+      <find>timedelta</find>
+      <find>ar_event</find>
+      <find>arrange_</find>
+      <find>new(</find>
+      <find>arrange</find>
+      <find>data</find>
+      <find>place</find>
+      <find>selected</find>
+      <find>cos</find>
+      <find>cost requires</find>
+      <find>cost.data</find>
+      <find>cost =</find>
+      <find>sendmail</find>
+      <find>add_event</find>
+      <find>ss-content</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>afafaf</replace>
+      <replace>bfbfbf</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7963ee00-9c28-4817-96f8-c4f988abcedf/console_1.sql" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7963ee00-9c28-4817-96f8-c4f988abcedf/console.sql" />
+        <option value="$PROJECT_DIR$/static/style.css" />
+        <option value="$PROJECT_DIR$/templates/admin-error.html" />
+        <option value="$PROJECT_DIR$/templates/edit.html" />
+        <option value="$PROJECT_DIR$/templates/new-photo.html" />
+        <option value="$PROJECT_DIR$/templates/faq.html" />
+        <option value="$PROJECT_DIR$/templates/contact.html" />
+        <option value="$PROJECT_DIR$/templates/about.html" />
+        <option value="$PROJECT_DIR$/templates/admin-setting.html" />
+        <option value="$PROJECT_DIR$/templates/admin-edit-category.html" />
+        <option value="$PROJECT_DIR$/templates/admin-edit-question.html" />
+        <option value="$PROJECT_DIR$/static/init.sql" />
+        <option value="$PROJECT_DIR$/static/schema.sql" />
+        <option value="$PROJECT_DIR$/templates/error.html" />
+        <option value="$PROJECT_DIR$/templates/admin-edit.html" />
+        <option value="$PROJECT_DIR$/templates/admin-login.html" />
+        <option value="$PROJECT_DIR$/templates/login.html" />
+        <option value="$PROJECT_DIR$/templates/guidelines.html" />
+        <option value="$PROJECT_DIR$/templates/admin-question.html" />
+        <option value="$PROJECT_DIR$/templates/admin-category.html" />
+        <option value="src:table:/ee579c9a/0630acc8-c83a-41c4-bdfc-b65ea8651b5d/main.event" />
+        <option value="$PROJECT_DIR$/static/edit.sql" />
+        <option value="$PROJECT_DIR$/static/events.sql" />
+        <option value="$PROJECT_DIR$/templates/search.html" />
+        <option value="$PROJECT_DIR$/templates/admin-event.html" />
+        <option value="$PROJECT_DIR$/templates/admin-search.html" />
+        <option value="$PROJECT_DIR$/templates/edit-event.html" />
+        <option value="$PROJECT_DIR$/templates/admin-new.html" />
+        <option value="$PROJECT_DIR$/templates/admin-edit-event.html" />
+        <option value="$PROJECT_DIR$/static/css/style.css" />
+        <option value="$PROJECT_DIR$/static/css/admin-style.css" />
+        <option value="$PROJECT_DIR$/templates/event.html" />
+        <option value="$PROJECT_DIR$/static/js/jquery.prettydropdowns.js" />
+        <option value="$PROJECT_DIR$/templates/new.html" />
+        <option value="$PROJECT_DIR$/templates/admin-base.html" />
+        <option value="$PROJECT_DIR$/static/css/prettydropdowns.css" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/templates/new-event.html" />
+        <option value="$PROJECT_DIR$/db.py" />
+        <option value="$PROJECT_DIR$/dograntcounty.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="952" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="dograntcounty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dograntcounty" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dograntcounty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dograntcounty" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dograntcounty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dograntcounty" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dograntcounty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dograntcounty" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dograntcounty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dograntcounty" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="dograntcounty" type="cbb8eebc:String" user="dograntcounty" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Sqlite (Xerial)" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="SearchEverywhereHistoryKey" value="push&#9;ACTION&#9;Vcs.Push&#10;replace&#9;ACTION&#9;Replace&#10;download&#9;ACTION&#9;PublishGroup.DownloadFrom&#10;configuration&#9;ACTION&#9;WebDeployment.Configuration&#10;deployment&#9;ACTION&#9;PublishGroupPopupMenu&#10;deploy&#9;ACTION&#9;PublishGroupPopupMenu" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/css" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/static/css" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.dograntcounty">
+    <configuration name="new-event.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/dograntcounty/templates/new-event.html" />
+    <configuration name="dograntcounty" type="PythonConfigurationType" factoryName="Python" singleton="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="dograntcounty" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dograntcounty.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Python.dograntcounty" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.new-event.html" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.new-event.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4625d6fa-abbd-41e2-96ae-427c3f0c7de0" name="Default" comment="" />
+      <created>1517267229128</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1517267229128</updated>
+    </task>
+    <task id="LOCAL-00001" summary="init">
+      <created>1517267406614</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1517267406614</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Has basic setup for showing events (not working)">
+      <created>1517431197535</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1517431197535</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1680" height="952" extended-state="6" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21022727" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16130953" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17619048" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18977273" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="SQL Generator" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <MESSAGE value="Has basic setup for showing events (not working)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Has basic setup for showing events (not working)" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/73e715cf-5c96-40e3-9c54-567d121dedbe/console.sql" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7963ee00-9c28-4817-96f8-c4f988abcedf/console_1.sql" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7963ee00-9c28-4817-96f8-c4f988abcedf/console.sql" />
+    <entry file="file://$USER_HOME$/Downloads/JohannesburgArtisticSilhouette.svg" />
+    <entry file="das://table:/ee579c9a/7963ee00-9c28-4817-96f8-c4f988abcedf/main.event_category" />
+    <entry file="das://table:/ee579c9a/7963ee00-9c28-4817-96f8-c4f988abcedf/main.category" />
+    <entry file="das://table:/ee579c9a/7963ee00-9c28-4817-96f8-c4f988abcedf/main.faq" />
+    <entry file="file://$PROJECT_DIR$/templates/admin-error.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="10" column="157" lean-forward="false" selection-start-line="10" selection-start-column="157" selection-end-line="10" selection-end-column="157" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ee579c9a/7963ee00-9c28-4817-96f8-c4f988abcedf/main.event" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0630acc8-c83a-41c4-bdfc-b65ea8651b5d/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/new-photo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="129" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="38" column="46" lean-forward="true" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/contact.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="39" column="64" lean-forward="true" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ee579c9a/0630acc8-c83a-41c4-bdfc-b65ea8651b5d/main.setting">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin-setting.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="107" column="45" lean-forward="true" selection-start-line="107" selection-start-column="45" selection-end-line="107" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin-edit-question.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="42" column="15" lean-forward="false" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin-edit-category.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="42" column="15" lean-forward="false" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/faq.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="39" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ee579c9a/0630acc8-c83a-41c4-bdfc-b65ea8651b5d/main.event_category">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/error.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="38" lean-forward="true" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ee579c9a/0630acc8-c83a-41c4-bdfc-b65ea8651b5d/main.edit_event">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin-login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="62" lean-forward="false" selection-start-line="28" selection-start-column="62" selection-end-line="28" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/guidelines.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="730">
+          <caret line="74" column="60" lean-forward="false" selection-start-line="74" selection-start-column="60" selection-end-line="74" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin-category.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1231">
+          <caret line="116" column="61" lean-forward="true" selection-start-line="116" selection-start-column="61" selection-end-line="116" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/edit.html" />
+    <entry file="file://$PROJECT_DIR$/templates/admin-question.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="110" column="0" lean-forward="true" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin-edit.html" />
+    <entry file="das://src:table:/ee579c9a/0630acc8-c83a-41c4-bdfc-b65ea8651b5d/main.event">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="24" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/init.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="2" lean-forward="false" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ee579c9a/0630acc8-c83a-41c4-bdfc-b65ea8651b5d/main.event">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/edit.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="36" lean-forward="false" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/events.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="62" column="79" lean-forward="true" selection-start-line="62" selection-start-column="79" selection-end-line="62" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="74" column="39" lean-forward="false" selection-start-line="74" selection-start-column="39" selection-end-line="74" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin-search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="822">
+          <caret line="76" column="47" lean-forward="false" selection-start-line="76" selection-start-column="47" selection-end-line="76" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/edit-event.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin-new.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2610">
+          <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin-event.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1455">
+          <caret line="97" column="44" lean-forward="false" selection-start-line="97" selection-start-column="44" selection-end-line="97" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin-edit-event.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2370">
+          <caret line="158" column="32" lean-forward="false" selection-start-line="158" selection-start-column="32" selection-end-line="158" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/admin-style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/jquery.prettydropdowns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="127" column="43" lean-forward="false" selection-start-line="127" selection-start-column="39" selection-end-line="127" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/prettydropdowns.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="57" column="27" lean-forward="false" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/event.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="76" column="28" lean-forward="false" selection-start-line="76" selection-start-column="28" selection-end-line="76" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/new-event.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1515">
+          <caret line="101" column="105" lean-forward="false" selection-start-line="101" selection-start-column="102" selection-end-line="101" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="57" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <marker date="1520660923691" expanded="true" signature="1364:1383" ph="SELECT * FRO... event" />
+            <marker date="1520660923691" expanded="true" signature="1439:1471" ph="SELECT * FRO... event" />
+            <marker date="1520660923691" expanded="true" signature="1549:1587" ph="SELECT * FRO... event" />
+            <marker date="1520660923691" expanded="true" signature="2067:2195" ph="SELECT * FRO... event" />
+            <marker date="1520660923691" expanded="true" signature="2336:2403" ph="SELECT * FRO... event_category" />
+            <marker date="1520660923691" expanded="true" signature="8853:9038" ph="SELECT * FRO... event" />
+            <marker date="1520660923691" expanded="true" signature="9342:9714" ph="INSERT INTO event... " />
+            <marker date="1520660923691" expanded="true" signature="10372:10483" ph="INSERT INTO event_category... " />
+            <marker date="1520660923691" expanded="true" signature="10807:10859" ph="UPDATE event... " />
+            <marker date="1520660923691" expanded="true" signature="11098:11145" ph="SELECT * FRO... event_category" />
+            <marker date="1520660923691" expanded="true" signature="11293:11328" ph="SELECT * FRO... category" />
+            <marker date="1520660923691" expanded="true" signature="11393:11430" ph="SELECT * FRO... category" />
+            <marker date="1520660923691" expanded="true" signature="12191:12241" ph="SELECT * FRO... event_category" />
+            <marker date="1520660923691" expanded="true" signature="12514:12544" ph="SELECT * FRO... faq" />
+            <marker date="1520660923691" expanded="true" signature="12608:12625" ph="SELECT * FRO... faq" />
+            <marker date="1520660923691" expanded="true" signature="13352:13386" ph="SELECT * FRO... setting" />
+            <marker date="1520660923691" expanded="true" signature="13699:13827" ph="SELECT * FRO... event" />
+            <marker date="1520660923691" expanded="true" signature="13974:14041" ph="SELECT * FRO... event_category" />
+            <marker date="1520660923691" expanded="true" signature="14243:14428" ph="SELECT * FRO... event" />
+            <marker date="1520660923691" expanded="true" signature="17931:17975" ph="SELECT * FRO... edit_event" />
+            <marker date="1520660923691" expanded="true" signature="18038:18096" ph="SELECT * FRO... event" />
+            <marker date="1520660923691" expanded="true" signature="22745:22803" ph="UPDATE event... " />
+            <marker date="1520660923691" expanded="true" signature="23009:23062" ph="DELETE FROM event_category... " />
+            <marker date="1520660923691" expanded="true" signature="23157:23206" ph="DELETE FROM edit_event... " />
+            <marker date="1520660923691" expanded="true" signature="23294:23332" ph="DELETE FROM event... " />
+            <marker date="1520660923691" expanded="true" signature="23521:23558" ph="SELECT * FRO... edit_event" />
+            <marker date="1520660923691" expanded="true" signature="23633:23670" ph="SELECT * FRO... edit_event" />
+            <marker date="1520660923691" expanded="true" signature="23729:24159" ph="UPDATE event... " />
+            <marker date="1520660923691" expanded="true" signature="24997:25040" ph="DELETE FROM edit_event... " />
+            <marker date="1520660923691" expanded="true" signature="25254:25297" ph="DELETE FROM edit_event... " />
+            <marker date="1520660923691" expanded="true" signature="25651:26053" ph="UPDATE event... " />
+            <marker date="1520660923691" expanded="true" signature="26622:26675" ph="DELETE FROM event_category... " />
+            <marker date="1520660923691" expanded="true" signature="26856:26967" ph="INSERT INTO event_category... " />
+            <marker date="1520660923691" expanded="true" signature="27475:27877" ph="INSERT INTO edit_event... " />
+            <marker date="1520660923691" expanded="true" signature="28602:28655" ph="DELETE FROM event_category... " />
+            <marker date="1520660923691" expanded="true" signature="28842:28953" ph="INSERT INTO event_category... " />
+            <marker date="1520660923691" expanded="true" signature="29314:29384" ph="INSERT INTO category... " />
+            <marker date="1520660923691" expanded="true" signature="29700:29779" ph="UPDATE category... " />
+            <marker date="1520660923691" expanded="true" signature="30022:30081" ph="DELETE FROM event_category... " />
+            <marker date="1520660923691" expanded="true" signature="30181:30225" ph="DELETE FROM category... " />
+            <marker date="1520660923691" expanded="true" signature="30524:30622" ph="UPDATE faq... " />
+            <marker date="1520660923691" expanded="true" signature="30889:30928" ph="DELETE FROM faq... " />
+            <marker date="1520660923691" expanded="true" signature="31195:31283" ph="INSERT INTO faq... " />
+            <marker date="1520660923691" expanded="true" signature="31624:31725" ph="UPDATE setting... " />
+            <marker date="1520660923691" expanded="true" signature="32083:32180" ph="UPDATE setting... " />
+            <marker date="1520660923691" expanded="true" signature="32556:32709" ph="UPDATE setting... " />
+            <marker date="1520660923691" expanded="true" signature="33235:33628" ph="INSERT INTO event... " />
+            <marker date="1520660923691" expanded="true" signature="34301:34412" ph="INSERT INTO event_category... " />
+            <marker date="1520660923691" expanded="true" signature="34737:34775" ph="SELECT * FRO... event" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/new.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin-base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="8" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dograntcounty.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7140">
+          <caret line="476" column="19" lean-forward="false" selection-start-line="476" selection-start-column="19" selection-end-line="476" selection-end-column="19" />
+          <folding>
+            <element signature="e#15#108#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
