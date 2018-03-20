@@ -1,12 +1,12 @@
 import sqlite3
 from flask import g
-import datetime
+import datetime, calendar
 import string
 import random
 
 import os
-#DATABASE = 'dograntcounty.sqlite'
-DATABASE = '/var/www/dograntcounty/dograntcounty.sqlite'
+DATABASE = 'dograntcounty.sqlite'
+#DATABASE = '/var/www/dograntcounty/dograntcounty.sqlite'
 
 import dograntcounty
 
@@ -85,6 +85,19 @@ def events(year, month):
     return g.db.execute('SELECT * FROM event WHERE start_date BETWEEN ? AND ? AND verified = 1 ORDER BY start_date, start_time, end_date, end_time, title', (from_date,to_date,)).fetchall()
 
 
+def events2(year, month):
+    from_month = months[month]
+    day = calendar.monthrange(int(year), int(from_month))[1]
+    end_date_month = datetime.datetime.strptime(str(year) + '/' + str(from_month) + '/' + str(day), '%Y/%m/%d').strftime('%Y-%m-%d')
+    start_date_month = datetime.datetime.strptime(str(year) + '/' + str(from_month) + '/1', '%Y/%m/%d').strftime('%Y-%m-%d')
+
+    return g.db.execute('''SELECT * FROM event WHERE ((? BETWEEN start_date AND end_date) 
+                                                      OR (? BETWEEN start_date AND end_date) 
+                                                      OR (start_date BETWEEN ? AND ?)) 
+                                                AND verified = 1 
+                           ORDER BY start_date, start_time, end_date, end_time, title''', (start_date_month,end_date_month,start_date_month,end_date_month)).fetchall()
+
+
 def filter_events(events, category):
     new_events = []
     for e in events:
@@ -93,20 +106,50 @@ def filter_events(events, category):
     return new_events
 
 
-def daterange(start_date, end_date):
-    dates = [start_date.strftime('%Y-%m-%d')]
+def daterange(start_date, end_date, start_month, end_month, repeat):
     this_date = start_date
-    while this_date != end_date:
-        this_date = this_date + datetime.timedelta(days=1)
-        dates.append(this_date.strftime('%Y-%m-%d'))
+    dates = [start_date.strftime('%Y-%m-%d')]
+    if start_date < start_month:
+        this_date = start_month
+        dates = [start_month.strftime('%Y-%m-%d')]
+    until_date = end_date
+    if end_date > end_month:
+        until_date = end_month
+    #print(start_date, end_date, until_date)
+    while this_date < until_date:
+        if repeat != 'month':
+            this_date = this_date + datetime.timedelta(days=repeat)
+            if this_date <= until_date:
+                #print(this_date.strftime('%Y-%m-%d'))
+                dates.append(this_date.strftime('%Y-%m-%d'))
+        else:
+            month = this_date.month
+            year = this_date.year + month // 12
+            month = month % 12 + 1
+            day = min(this_date.day, calendar.monthrange(year, month)[1])
+            this_date = datetime.date(year, month, day)
+            if this_date <= until_date:
+                #print(this_date.strftime('%Y-%m-%d'))
+                dates.append(this_date.strftime('%Y-%m-%d'))
     return dates
 
 
-def ar_events(events):
+def ar_events(events, year, month):
     event_dates = []
+
+    end_m = months[month]
+    end_d = calendar.monthrange(int(year), int(end_m))[1]
+    end_month = datetime.date(int(year), int(end_m), int(end_d))
+
     for e in events:
-        for single_date in daterange(datetime.date(int(e['start_date'][:4]),int(e['start_date'][5:7]),int(e['start_date'][8:])), datetime.date(int(e['end_date'][:4]),int(e['end_date'][5:7]),int(e['end_date'][8:]))):
+        repeat = 1
+        if e['repeated'] == 'weekly':
+            repeat = 7
+        elif e['repeated'] == 'monthly':
+            repeat = 'month'
+        for single_date in daterange(datetime.date(int(e['start_date'][:4]),int(e['start_date'][5:7]),int(e['start_date'][8:])), datetime.date(int(e['end_date'][:4]),int(e['end_date'][5:7]),int(e['end_date'][8:])), datetime.date(int(year), int(end_m), 1), datetime.date(int(year), int(end_m), int(end_d)), repeat):
             if single_date not in event_dates:
+                #print(single_date)
                 event_dates.append(single_date)
 
     new_events = {}
@@ -114,7 +157,7 @@ def ar_events(events):
     for n in range(len(events)):
 
         new_event = {}
-        new_event['id'] = events[n]['id']
+        new_event['id'] = random_string(12)
         new_event['title'] = events[n]['title']
         new_event['organization'] = events[n]['organization']
         new_event['location'] = events[n]['location']
@@ -160,7 +203,17 @@ def ar_events(events):
         new_event['start_date'] = start_month + " " + str(start_day)
         new_event['end_date'] = end_month + " " + str(end_day)
 
-        for single_date in daterange(datetime.date(int(events[n]['start_date'][:4]), int(events[n]['start_date'][5:7]), int(events[n]['start_date'][8:])),datetime.date(int(events[n]['end_date'][:4]), int(events[n]['end_date'][5:7]), int(events[n]['end_date'][8:]))):
+        repeat = 1
+        if events[n]['repeated'] == 'weekly':
+            repeat = 7
+        elif events[n]['repeated'] == 'monthly':
+            repeat = 'month'
+
+        for single_date in daterange(
+                datetime.date(int(events[n]['start_date'][:4]), int(events[n]['start_date'][5:7]), int(events[n]['start_date'][8:])),
+                datetime.date(int(events[n]['end_date'][:4]), int(events[n]['end_date'][5:7]), int(events[n]['end_date'][8:])),
+                datetime.date(int(year), int(end_m), 1),
+                datetime.date(int(year), int(end_m), int(end_d)), repeat):
             num = event_dates.index(single_date)
 
             if num not in new_events.keys():
@@ -190,6 +243,7 @@ def arrange_events(events):
         new_event['organization'] = events[n]['organization']
         new_event['location'] = events[n]['location']
         new_event['description'] = events[n]['description']
+        new_event['repeated'] = events[n]['repeated']
 
         new_event['cost'] = events[n]['cost']
 
@@ -240,17 +294,17 @@ def search_events(keyword):
     return g.db.execute('SELECT * FROM event WHERE title COLLATE UTF8_GENERAL_CI LIKE ? OR organization COLLATE UTF8_GENERAL_CI LIKE ? AND verified = 1 ORDER BY start_date, start_time, end_date, end_time, title', (keyword,keyword,)).fetchall()
 
 
-def add_event(title, organization, description, start_date, start_time, end_date, end_time, location, categories, cost, contact_name, contact_email, contact_phone, url):
+def add_event(title, organization, description, start_date, start_time, end_date, end_time, repeated, location, categories, cost, contact_name, contact_email, contact_phone, url):
 
     event_id = random_string(12)
     password = random_string(8)
 
     add = '''
-                 INSERT INTO event (id, title, organization, description, start_date, start_time, end_date, end_time, location, cost, contact_name, contact_email, contact_phone, url, password)
-                 VALUES (:id, :title, :organization, :description, :start_date, :start_time, :end_date, :end_time, :location, :cost, :contact_name, :contact_email, :contact_phone, :url, :password)
+                 INSERT INTO event (id, title, organization, description, start_date, start_time, end_date, end_time, repeated, location, cost, contact_name, contact_email, contact_phone, url, password)
+                 VALUES (:id, :title, :organization, :description, :start_date, :start_time, :end_date, :end_time, :repeated, :location, :cost, :contact_name, :contact_email, :contact_phone, :url, :password)
                  '''
     add_cursor = g.db.execute(add, {'id': event_id, 'title': title, 'organization': organization, 'description': description, 'start_date': start_date,
-                                    'start_time': start_time, 'end_date': end_date, 'end_time': end_time, 'location': location, 'cost': cost,
+                                    'start_time': start_time, 'end_date': end_date, 'end_time': end_time, 'repeated': repeated, 'location': location, 'cost': cost,
                                     'contact_name': contact_name, 'contact_email': contact_email, 'contact_phone': contact_phone,
                                     'url': url, 'password': password})
     g.db.commit()
@@ -396,6 +450,7 @@ def admin_arrange_events(events):
         new_event['organization'] = events[n]['organization']
         new_event['location'] = events[n]['location']
         new_event['description'] = events[n]['description']
+        new_event['repeated'] = events[n]['repeated']
 
         new_event['cost'] = events[n]['cost']
 
@@ -461,6 +516,7 @@ def admin_arrange_pendings(pendings):
         new_pending['organization'] = p['organization']
         new_pending['location'] = p['location']
         new_pending['description'] = p['description']
+        new_pending['repeated'] = p['repeated']
 
         new_pending['cost'] = p['cost']
 
@@ -518,6 +574,7 @@ def admin_arrange_edited_events(events):
         new_pending['organization'] = p['organization']
         new_pending['location'] = p['location']
         new_pending['description'] = p['description']
+        new_pending['repeated'] = p['repeated']
 
         new_pending['cost'] = p['cost']
 
@@ -625,16 +682,16 @@ def admin_delete_edit(id):
     return 0
 
 
-def admin_edit_event(id,title, organization, description, start_date, start_time, end_date, end_time, location, categories, cost, contact_name, contact_email, contact_phone, url):
+def admin_edit_event(id,title, organization, description, start_date, start_time, end_date, end_time, repeated, location, categories, cost, contact_name, contact_email, contact_phone, url):
 
     edit = '''
                  UPDATE event SET title = :title, organization = :organization, description = :description,
-                  start_date = :start_date, start_time = :start_time, end_date = :end_date, end_time = :end_time, location = :location,
+                  start_date = :start_date, start_time = :start_time, end_date = :end_date, end_time = :end_time, repeated = :repeated, location = :location,
                   cost = :cost, contact_name = :contact_name, contact_email = :contact_email, contact_phone = :contact_phone,
                   url = :url WHERE id = :event_id
                  '''
     edit_cursor = g.db.execute(edit, {'event_id': id, 'title': title, 'organization': organization, 'description': description, 'start_date': start_date,
-                                    'start_time': start_time, 'end_date': end_date, 'end_time': end_time, 'location': location, 'cost': cost,
+                                    'start_time': start_time, 'end_date': end_date, 'end_time': end_time, 'repeated': repeated, 'location': location, 'cost': cost,
                                     'contact_name': contact_name, 'contact_email': contact_email, 'contact_phone': contact_phone,
                                     'url': url})
     g.db.commit()
@@ -655,17 +712,18 @@ def admin_edit_event(id,title, organization, description, start_date, start_time
     return 0
 
 
-def edit_event(event_id, title, organization, description, start_date, start_time, end_date, end_time, location, categories, cost, contact_name, contact_email, contact_phone, url, photo):
+def edit_event(event_id, title, organization, description, start_date, start_time, end_date, end_time, repeated, location, categories, cost, contact_name, contact_email, contact_phone, url, photo):
 
     id = random_string(12)
 
     edit = '''
-                     INSERT INTO edit_event (id, event_id, title, organization, description, start_date, start_time, end_date, end_time, location, cost, contact_name, contact_email, contact_phone, url, photo)
-                           VALUES (:id, :event_id, :title, :organization, :description, :start_date, :start_time, :end_date, :end_time, :location, :cost, :contact_name, :contact_email, :contact_phone, :url, :photo)
+                     INSERT INTO edit_event (id, event_id, title, organization, description, start_date, start_time, end_date, end_time, repeated, location, cost, contact_name, contact_email, contact_phone, url, photo)
+                           VALUES (:id, :event_id, :title, :organization, :description, :start_date, :start_time, :end_date, :end_time, :repeated, :location, :cost, :contact_name, :contact_email, :contact_phone, :url, :photo)
                      '''
     edit_cursor = g.db.execute(edit, {'id': id, 'event_id': event_id, 'title': title, 'organization': organization,
                                       'description': description, 'start_date': start_date,
                                       'start_time': start_time, 'end_date': end_date, 'end_time': end_time,
+                                      'repeated': repeated,
                                       'location': location, 'cost': cost,
                                       'contact_name': contact_name, 'contact_email': contact_email,
                                       'contact_phone': contact_phone,
@@ -803,17 +861,17 @@ def admin_update_contact(title, content, email, phone):
     return 0
 
 
-def admin_add_event(title, organization, description, start_date, start_time, end_date, end_time, location, categories, cost, contact_name, contact_email, contact_phone, url):
+def admin_add_event(title, organization, description, start_date, start_time, end_date, end_time, repeated, location, categories, cost, contact_name, contact_email, contact_phone, url):
 
     event_id = random_string(12)
     password = random_string(8)
 
     add = '''
-                 INSERT INTO event (id, title, organization, description, start_date, start_time, end_date, end_time, location, cost, contact_name, contact_email, contact_phone, url, password, verified)
-                 VALUES (:id, :title, :organization, :description, :start_date, :start_time, :end_date, :end_time, :location, :cost, :contact_name, :contact_email, :contact_phone, :url, :password, :verified)
+                 INSERT INTO event (id, title, organization, description, start_date, start_time, end_date, end_time, repeated, location, cost, contact_name, contact_email, contact_phone, url, password, verified)
+                 VALUES (:id, :title, :organization, :description, :start_date, :start_time, :end_date, :end_time, :repeated, :location, :cost, :contact_name, :contact_email, :contact_phone, :url, :password, :verified)
                  '''
     add_cursor = g.db.execute(add, {'id': event_id, 'title': title, 'organization': organization, 'description': description, 'start_date': start_date,
-                                    'start_time': start_time, 'end_date': end_date, 'end_time': end_time, 'location': location, 'cost': cost,
+                                    'start_time': start_time, 'end_date': end_date, 'end_time': end_time, 'repeated': repeated, 'location': location, 'cost': cost,
                                     'contact_name': contact_name, 'contact_email': contact_email, 'contact_phone': contact_phone,
                                     'url': url, 'password': password, 'verified': 1})
     g.db.commit()

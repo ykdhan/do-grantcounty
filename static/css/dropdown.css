@@ -19,6 +19,15 @@
     cursor: pointer;
     text-align: left;
 }
+#dropdown #drop {
+    float: right;
+    position: unset;
+    margin: 0.3rem;
+    margin-top: 0.8rem;
+}
+#dropdown-selected.none {
+    color: #bfbfbf;
+}
 #dropdown-selected.selected {
     color: #222;
 }

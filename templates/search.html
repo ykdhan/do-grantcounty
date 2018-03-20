@@ -39,10 +39,10 @@
     </div>
 
     <div id="menu-bar-mobile" class="mobile">
-        <div class="menu-mobile now"><a href="{{ url_for('events') }}"><i class="far fa-calendar-alt"></i> Events</a></div>
-        <div class="menu-mobile"><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About</a></div>
-        <div class="menu-mobile"><a href="{{ url_for('faq') }}"><i class="far fa-question-circle"></i> FAQ</a></div>
-        <div class="menu-mobile"><a href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i> Contact</a></div>
+        <a href="{{ url_for('events') }}"><div class="menu-mobile now"><i class="far fa-calendar-alt"></i> Events</div></a>
+        <a href="{{ url_for('about') }}"><div class="menu-mobile"><i class="fas fa-info-circle"></i> About</div></a>
+        <a href="{{ url_for('faq') }}"><div class="menu-mobile"><i class="far fa-question-circle"></i> FAQ</div></a>
+        <a href="{{ url_for('contact') }}"><div class="menu-mobile"><i class="fas fa-envelope"></i> Contact</div></a>
     </div>
 
     <div class="background desktop">

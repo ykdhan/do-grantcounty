@@ -24,12 +24,12 @@
     </div>
 
     <div id="menu-bar-mobile" class="mobile">
-        <div class="menu-mobile"><a href="{{ url_for('admin_events') }}"><i class="far fa-calendar-alt"></i> Events</a></div>
-        <div class="menu-mobile now"><a href="{{ url_for('admin_categories') }}"><i class="fas fa-th-large"></i> Categories</a></div>
-        <div class="menu-mobile"><a href="{{ url_for('admin_questions') }}"><i class="far fa-question-circle"></i> Questions</a></div>
-        <div class="menu-mobile"><a href="{{ url_for('admin_settings') }}"><i class="fas fa-cog"></i> Settings</a></div>
+        <a href="{{ url_for('admin_events') }}"><div class="menu-mobile"><i class="far fa-calendar-alt"></i> Events</div></a>
+        <a href="{{ url_for('admin_categories') }}"><div class="menu-mobile now"><i class="fas fa-th-large"></i> Categories</div></a>
+        <a href="{{ url_for('admin_questions') }}"><div class="menu-mobile"><i class="far fa-question-circle"></i> Questions</div></a>
+        <a href="{{ url_for('admin_settings') }}"><div class="menu-mobile"><i class="fas fa-cog"></i> Settings</div></a>
         <div class="padding"></div>
-        <div class="menu-mobile"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a></div>
+        <a href="{{ url_for('logout') }}"><div class="menu-mobile"><i class="fas fa-sign-out-alt"></i> Sign Out</div></a>
     </div>
 
     {% if form.errors %}

@@ -56,7 +56,8 @@
                         <div class="flex">
                             <i class="fas fa-th-large"></i>
                             <div id="dropdown">
-                                <div id="dropdown-selected">Category</div>
+                                <i id="drop" class="fas fa-chevron-down"></i>
+                                <div id="dropdown-selected" class="none">Category</div>
                                 <div id="dropdown-options">
                                     {% for c in categories %}
                                     <div class="dropdown-option" data-value="{{ c.id }}">{{ c.title }}</div>
@@ -65,7 +66,6 @@
                             </div>
 
                             {{ form.category(class="hidden") }}
-
                         </div>
                     </div>
                     <br>
@@ -132,14 +132,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
 <script>
-new SlimSelect({
-    select: '#category',
-    placeholder: 'Category&nbsp;&nbsp; <span style="font-size: 0.8rem;">(choose all that apply)</span>',
-    showSearch: false,
-    allowDeselect: true,
-    closeOnSelect: false
-});
-
 
 
 function upload_photo() {
@@ -195,19 +187,42 @@ var categories = [];
 var show_categories = [];
 $("#dropdown-options").hide();
 $("body").click(function (e) {
+    var selected = document.getElementById('dropdown-selected');
+    var category = document.getElementById('category');
     var elt = $(e.target);
     if ($(e.target).attr("id") == "dropdown-selected") {
         if (cat) {
             $("#dropdown-options").hide();
+            document.getElementById('drop').style.rotate = '180deg';
         } else {
             $("#dropdown-options").show();
+            document.getElementById('drop').style.rotate = '0deg';
         }
         cat = !cat;
-        console.log('dropdown-selected');
+        console.log('dropdown');
     } else if ($(e.target).attr("class") == "dropdown-option") {
         categories.push($(e.target).attr('data-value'));
         show_categories.push($(e.target).html());
         $(e.target).addClass('selected');
+        $('#category').val(categories);
+
+        $('#dropdown-selected').removeClass('selected')
+
+        if (show_categories.length == 0) {
+            selected.innerHTML = 'Category';
+        } else if (show_categories.length == 1) {
+            selected.innerHTML = show_categories[0];
+            $('#dropdown-selected').addClass('selected');
+        } else {
+            selected.innerHTML = show_categories[0];
+            for (var k = 1; k < show_categories.length; k++) {
+                selected.innerHTML += ', ' + show_categories[k];
+            }
+            $('#dropdown-selected').addClass('selected');
+        }
+
+        console.log($('#category').val());
+        console.log(show_categories);
     } else if ($(e.target).attr("class") == "dropdown-option selected") {
         var idx = categories.indexOf($(e.target).attr('data-value'));
         var old_categories = categories;
@@ -221,11 +236,30 @@ $("body").click(function (e) {
             }
         }
         $(e.target).removeClass('selected');
+        $('#category').val(categories);
+
+        $('#dropdown-selected').removeClass('selected')
+
+        if (show_categories.length == 0) {
+            selected.innerHTML = 'Category';
+        } else if (show_categories.length == 1) {
+            selected.innerHTML = show_categories[0];
+            $('#dropdown-selected').addClass('selected');
+        } else {
+            selected.innerHTML = show_categories[0];
+            for (var k = 1; k < show_categories.length; k++) {
+                selected.innerHTML += ', ' + show_categories[k];
+            }
+            $('#dropdown-selected').addClass('selected');
+        }
+
+        console.log($('#category').val());
+        console.log(show_categories);
     } else {
         $("#dropdown-options").hide();
     }
 
-    console.log(categories);
+
 
 });
 </script>

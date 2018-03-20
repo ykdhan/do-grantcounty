@@ -24,7 +24,7 @@
             <div class="padding"></div>
             <form method="POST">
                 {{ form.csrf_token }}
-                <div class="flex">{{ form.username(placeholder="Username", class="form-login") }}</div>
+                <div class="flex">{{ form.username(placeholder="Username", class="form-login", autocapitalize="off") }}</div>
                 <div class="flex">{{ form.password(placeholder="Password", class="form-login") }}</div>
                 <div class="flex">{{ form.submit(class="submit") }}</div>
             </form>

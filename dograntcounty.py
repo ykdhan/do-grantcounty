@@ -11,7 +11,7 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from flask_hashing import Hashing
 from flask_mail import Mail, Message
 import string, random, datetime, re, os
-from img_rotate import fix_orientation
+
 import db
 
 import smtplib
@@ -19,6 +19,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.header import Header
 from email.utils import formataddr
+
 
 
 app = Flask(__name__)
@@ -57,6 +58,7 @@ app.config['WTF_CSRF_ENABLED'] = False
 @app.before_request
 def before():
     db.open_db_connection()
+    session.permanent = False
 
 
 @app.teardown_request
@@ -210,7 +212,8 @@ def event(year, month):
 
     global filter_event
 
-    print(filter_event)
+    if not session.get('filter-event'):
+        session['filter-event'] = '0'
 
     today = datetime.datetime.today() - datetime.timedelta(days=1)
     today = today.strftime('%Y-%m-%d')
@@ -238,13 +241,11 @@ def event(year, month):
         'next': [next_month, next_year]
     }
 
-    events = db.events(year, month)
-    if filter_event != '0':
+    events = db.events2(year, month)
+    if session.get('filter-event') != '0':
         events = db.filter_events(events, filter_event)
 
-    print(events)
-
-    event_dates = db.ar_events(events)[1]
+    event_dates = db.ar_events(events, year, month)[1]
     nums = []
     for n in range(len(event_dates)):
         nums.append(n)
@@ -252,23 +253,32 @@ def event(year, month):
                          + ", " + datetime.datetime.strptime(event_dates[n], '%Y-%m-%d').strftime("%b") + " " +\
                          str(int(datetime.datetime.strptime(event_dates[n], '%Y-%m-%d').strftime("%d")))
 
-    events = db.ar_events(events)[0]
+    events = db.ar_events(events, year, month)[0]
 
     search = SearchEventForm()
 
     if search.validate_on_submit() and search.search_submit.data:
         return redirect(url_for('search_event', keyword=search.keyword.data))
 
-    category = CategoryEventForm(category=filter_event)
+    category = CategoryEventForm(category=session.get('filter-event'))
+    category2 = CategoryEventForm2(category2=session.get('filter-event'))
     category.category.choices = [('0', 'All Categories')]
+    category2.category2.choices = [('0', 'All Categories')]
+
     for c in db.categories():
         category.category.choices.append((c['id'], c['title']))
+        category2.category2.choices.append((c['id'], c['title']))
 
     if category.validate_on_submit() and category.category_submit.data:
-        filter_event = category.category.data
+        #filter_event = category.category.data
+        session['filter-event'] = category.category.data
         return redirect(url_for('event', year=year, month=month))
 
-    return render_template('event.html', year=year, month=months_whole[month], today=today, nums=nums, event_dates=event_dates, events=events, controls=controls, search=search, category=category)
+    if category2.validate_on_submit() and category2.category_submit2.data:
+        session['filter-event'] = category2.category2.data
+        return redirect(url_for('event', year=year, month=month))
+
+    return render_template('event.html', year=year, month=months_whole[month], today=today, nums=nums, event_dates=event_dates, events=events, controls=controls, search=search, category=category, category2=category2)
 
 
 @app.route('/update/events/<year>/<month>/', methods=["GET", "POST"])
@@ -394,6 +404,7 @@ def new():
                                      start_time,
                                      form.end_date.data,
                                      end_time,
+                                     form.repeated.data,
                                      form.location.data,
                                      form.category.data,
                                      form.cost.data,
@@ -452,7 +463,6 @@ def new():
                                         #note { margin-top: 2rem; color: #cecece; font-size: 0.8rem; }
                                     </style>
                                     </head><body><div id="frame">
-                                        <img id="logo" alt="DO GRANTCOUNTY" src="https://dograntcounty.com/static/img/logo-purple.svg">
                                         <p id="dear">Dear ''' + form.contact_name.data + ''',</p>
                                         <p>Thank you for adding an event to DoGrantCounty!<br>Our administrative team will review your event details before publishing to ensure it follows our event guidelines. We will do our best to post your event within 2-3 business days. Don’t forget to share www.DoGrantCounty.com and your event on social media.<br>
                                         Thanks again, for using DoGrantCounty to promote the good things happening in Grant County, Indiana!</p>
@@ -476,43 +486,22 @@ def new():
                 
                 """
 
+                # Mail to Admin
+
                 title2 = "New Event: "+form.title.data
 
-                html2 = '''
-                            <!DOCTYPE html><html lang="en-us"><head>
-                            <meta charset="utf-8">
-                            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-                            <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Expanded:300,400,500,600,700" rel="stylesheet">
-                            <title></title>
-                            <style>
-                            body { width: 100%; height: 100%; background: none; padding: 1rem; margin: 0;
-                                font-size: 0.95rem; font-family: 'Encode Sans Semi Expanded', sans-serif; font-weight: 300;
-                                color: #474747; text-align: center; line-height: 1.5; }
-                            p { margin: 0; padding: 0; margin-bottom: 0.5rem; text-align: left; }
-                            button {
-                                font-size: 0.95rem; font-family: 'Encode Sans Semi Expanded', sans-serif; font-weight: 500;
-                                width: auto; cursor: pointer; background: #fff;
-                                border: 0.06rem solid #5f3bba; border-radius: 0.25rem; color: #5f3bba;
-                                padding: 0.6rem 1rem; margin: 1rem auto; }
-                            button:hover { background: #5f3bba; color: #fff; }
-                            #frame { width: 100%; max-width: 450px; margin: 3rem auto; }
-                            #logo { width: 11rem; height: auto; margin: 0 auto; }
-                            #dear { margin-top: 2.5rem; margin-bottom: 2.5rem; } 
-                            #end-message { margin-top: 2.5rem;}        
-                            #info { padding: 1.5rem; text-align: center; }
-                            #note { margin-top: 2rem; color: #cecece; font-size: 0.8rem; }
-                            </style>
-                            </head><body><div id="frame"><img id="logo" alt="DO GRANTCOUNTY" src="https://dograntcounty.com/static/img/logo-purple.svg">
-                            <p id="dear">Dear DoGrantCounty.com,</p><p>New event has been added. Please go and verify the new event.</p>
-                            <div id="info">
-                            <p>Event Host: <b>''' + form.organization.data + '''</b></p>
-                            <p>Event Title: <b>''' + form.title.data + '''</b></p>
-                            </div>
-                            <p id="end-message">Thank you.</p>
-                            <p id="note">Note: New event will not be displayed on the website until you verify the event.</p>
-                            </div></body></html>
-                            '''
+                html2 = '<!DOCTYPE html><html lang="en-us"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"><link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Expanded:300,400,500,600,700" rel="stylesheet"><title></title><style>' \
+                        + 'body { width: 100%; height: 100%; background: none; padding: 1rem; margin: 0; font-size: 0.95rem; font-family: "Encode Sans Semi Expanded", sans-serif; font-weight: 300; color: #474747; text-align: center; line-height: 1.5; } p { margin: 0; padding: 0; margin-bottom: 0.5rem; text-align: left; } button { font-size: 0.95rem; font-family: "Encode Sans Semi Expanded", sans-serif; font-weight: 500; width: auto; cursor: pointer; background: #fff; border: 0.06rem solid #5f3bba; border-radius: 0.25rem; color: #5f3bba; padding: 0.6rem 1rem; margin: 1rem auto; } button:hover { background: #5f3bba; color: #fff; }' \
+                        + '#frame { width: 100%; max-width: 450px; margin: 3rem auto; } #logo { width: 11rem; height: auto; margin: 0 auto; } #dear { margin-top: 2.5rem; margin-bottom: 2.5rem; } #end-message { margin-top: 2.5rem;} #info { padding: 1.5rem; text-align: center; } #note { margin-top: 2rem; color: #cecece; font-size: 0.8rem; }' \
+                        + '</style> </head><body><div id="frame">' \
+                        + '<p id="dear">Dear DoGrantCounty.com,</p><p>New event has been added. Please go and verify the new event.</p>' \
+                        + '<div id="info"><p>Event Host: <b>'+ str(form.organization.data) + '</b></p><p>Event Title: <b>' + str(form.title.data) + '</b></p></div>' \
+                        + '<p id="end-message">The Do Grant County Team</p><p id="note">Note: New event will not be displayed on the website until you verify the event.</p></div></body></html>'
+
+                s2 = smtplib.SMTP("smtp.office365.com", 587)
+                s2.ehlo()
+                s2.starttls()
+                s2.login("contact@dograntcounty.com", "Findevents1!")
 
                 msg2 = MIMEMultipart('alternative')
                 msg2['From'] = formataddr((str(Header('DoGrantCounty.com', 'utf-8')), 'contact@dograntcounty.com'))
@@ -521,14 +510,31 @@ def new():
                 mt_html2 = MIMEText(html2, 'html')
                 msg2.attach(mt_html2)
 
-                s2 = smtplib.SMTP("smtp.office365.com", 587)
-                s2.ehlo()
-                s2.starttls()
-                s2.login("contact@dograntcounty.com", "Findevents1!")
                 s2.sendmail("contact@dograntcounty.com", ["contact@dograntcounty.com"], msg2.as_string())
+
+                # Mail to User
+
+                title1 = "Thanks for creating an event!"
+
+                html1 = '<!DOCTYPE html><html lang="en-us"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"><link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Expanded:300,400,500,600,700" rel="stylesheet"><title></title><style>' \
+                        + 'body { width: 100%; height: 100%; background: none; padding: 1rem; margin: 0; font-size: 0.95rem; font-family: "Encode Sans Semi Expanded", sans-serif; font-weight: 300; color: #474747; text-align: center; line-height: 1.5; } p { margin: 0; padding: 0; margin-bottom: 0.5rem; text-align: left; }' \
+                        + 'a { font-size: inherit; font-weight: inherit; color: #5f3bba; text-decoration: none; } a:hover { color: #5f3bba; } button { font-size: 0.95rem; font-family: "Encode Sans Semi Expanded", sans-serif; font-weight: 500; width: auto; cursor: pointer; background: #fff; border: 0.06rem solid #5f3bba; border-radius: 0.25rem; color: #5f3bba; padding: 0.6rem 1rem; margin: 1rem auto; } button:hover { background: #5f3bba; color: #fff; } #frame { width: 100%; max-width: 450px; margin: 3rem auto; } #logo { width: 11rem; height: auto; margin: 0 auto; } #dear { margin-top: 2.5rem; margin-bottom: 2.5rem; } #end-message { margin-top: 2.5rem;} #info { padding: 1.5rem; text-align: center; } #note { margin-top: 2rem; color: #cecece; font-size: 0.8rem; }' \
+                        + '</style></head><body><div id="frame">' \
+                        + '<p id="dear">Dear '+ str(form.contact_name.data)+',</p><p>Thank you for adding an event to DoGrantCounty!<br>Our administrative team will review your event details before publishing to ensure it follows our event guidelines. We will do our best to post your event within 2-3 business days. Do not forget to share <a href="https://www.dograntcounty.com">www.DoGrantCounty.com</a> and your event on social media.<br>Thanks again, for using DoGrantCounty to promote the good things happening in Grant County, Indiana!</p>' \
+                        + '<p id="end-message">The Do Grant County Team</p><p id="note"></p></div></body></html>'
+
+                msg1 = MIMEMultipart('alternative')
+                msg1['From'] = formataddr((str(Header('DoGrantCounty.com', 'utf-8')), 'contact@dograntcounty.com'))
+                msg1['To'] = form.contact_email.data
+                msg1['Subject'] = title1
+                mt_html1 = MIMEText(html1, 'html')
+                msg1.attach(mt_html1)
+
+                s2.sendmail("contact@dograntcounty.com", [str(form.contact_email.data)], msg1.as_string())
                 s2.quit()
 
                 flash('New event has been added.')
+                flash('Please wait for verification.')
 
             return redirect(url_for('events'))
 
@@ -551,7 +557,7 @@ def update_new():
                         end_date=datetime.datetime.strptime(today, '%Y-%m-%d %H:%M:%S'),
                         start_time=datetime.datetime.strptime(start_time, '%H:%M'),
                         end_time=datetime.datetime.strptime(end_time, '%H:%M'))
-    #form.category.choices = [(i['id'], i['title']) for i in db.categories()]
+    form.category.choices = [(i['id'], i['title']) for i in db.categories()]
 
     if form.validate_on_submit():
 
@@ -567,6 +573,7 @@ def update_new():
                                      start_time,
                                      form.end_date.data,
                                      end_time,
+                                     form.repeated.data,
                                      form.location.data,
                                      form.category.data,
                                      form.cost.data,
@@ -683,7 +690,7 @@ class NewEventForm(FlaskForm):
     end_date = DateField('End Date', [InputRequired(message="End Date is required.")], format='%Y-%m-%d')
     start_time = TimeField('Start Time', [InputRequired(message="Start Time is required.")])
     end_time = TimeField('End Time', [InputRequired(message="End Time is required.")])
-    category = SelectMultipleField('Category', choices=[('AM', 'AM'), ('PM', 'PM')])
+    category = SelectMultipleField('Category')
     cost = StringField('Cost', [Length(max=50, message="Cost is too long (max 50 char).")])
     contact_name = StringField('Contact Name', [InputRequired(message="Contact Name is required.")])
     contact_email = EmailField('Contact Email', [InputRequired(message="Contact Email is required.")])
@@ -691,6 +698,7 @@ class NewEventForm(FlaskForm):
     location = StringField('Location', [InputRequired(message="Location is required.")])
     url = StringField('Web URL', [Length(max=100, message="Web URL is too long (max 100 char).")])
     photo = FileField('Photo', [FileAllowed(['jpg', 'png', 'jpeg', 'gif'], 'You can upload images only.')])
+    repeated = SelectField('Repeated', choices=[('daily', 'Daily'), ('weekly', 'Weekly'), ('monthly', 'Monthly')])
     submit = SubmitField('Add Event')
 
 
@@ -705,7 +713,7 @@ class EditEventForm(FlaskForm):
     end_date = DateField('End Date', [InputRequired(message="End Date is required.")], format='%Y-%m-%d')
     start_time = TimeField('Start Time', [InputRequired(message="Start Time is required.")])
     end_time = TimeField('End Time', [InputRequired(message="End Time is required.")])
-    category = SelectMultipleField('Category', choices=[('AM', 'AM'), ('PM', 'PM')])
+    category = SelectMultipleField('Category')
     cost = StringField('Cost', [Length(max=50, message="Cost is too long (max 50 char).")])
     contact_name = StringField('Contact Name', [InputRequired(message="Contact Name is required.")])
     contact_email = EmailField('Contact Email', [InputRequired(message="Contact Email is required.")])
@@ -713,6 +721,7 @@ class EditEventForm(FlaskForm):
     location = StringField('Location', [InputRequired(message="Location is required.")])
     url = StringField('Web URL', [Length(max=100, message="Web URL is too long (max 100 char).")])
     photo = FileField('Photo', [FileAllowed(['jpg', 'png', 'jpeg', 'gif'], 'You can upload images only.')])
+    repeated = SelectField('Repeated', choices=[('daily', 'Daily'), ('weekly', 'Weekly'), ('monthly', 'Monthly')])
     old_photo = HiddenField('Old Photo')
     submit = SubmitField('Edit Event')
 
@@ -752,6 +761,10 @@ class SearchEventForm(FlaskForm):
 class CategoryEventForm(FlaskForm):
     category = SelectField('Category', choices=[('0','All Categories')])
     category_submit = SubmitField('Category Event')
+
+class CategoryEventForm2(FlaskForm):
+    category2 = SelectField('Category', choices=[('0', 'All Categories')])
+    category_submit2 = SubmitField('Category Event')
 
 
 class AboutForm(FlaskForm):
@@ -963,14 +976,15 @@ def admin_accept_event(id):
                     #note { margin-top: 2rem; color: #cecece; font-size: 0.8rem; }
                     </style>
                     </head><body><div id="frame">
-                        <img id="logo" alt="DO GRANTCOUNTY" src="https://dograntcounty.com/static/img/logo-purple.svg">
+                        
                         <p id="dear">Dear ''' + event['contact_name'] + ''',</p>
                         <p>Your event is now on our website!<br>You can edit your event information anytime through the link below.<br>Please use the attached password to login.</p>
                     <div id="info">
                         <p>Event Password: <b>''' + event['password'] + '''</b></p>
                         <p><a href="https://dograntcounty.com/events/login"><button>Edit Event</button></a></p>
                     </div>
-                        <p id="end-message">Thanks for using our website.</p>
+                    <p>Thanks again, for using our website.</p>
+                        <p id="end-message">The Do Grant County Team</p>
                         <p id="note">Note: You will need to wait for our verification whenever you make changes to your event.</p>
                     </div></body></html>
                     '''
@@ -1054,6 +1068,7 @@ def admin_edit_event(id):
                          end_date=datetime.datetime.strptime(event['end_date'], '%Y-%m-%d'),
                          start_time=datetime.datetime.strptime(event['start_time'], '%H:%M'),
                          end_time=datetime.datetime.strptime(event['end_time'], '%H:%M'),
+                         repeated=event['repeated'],
                          cost=event['cost'],
                          contact_name=event['contact_name'],
                          contact_email=event['contact_email'],
@@ -1064,6 +1079,8 @@ def admin_edit_event(id):
                          old_photo=event['photo'])
 
     form.category.choices = [(i['id'], i['title']) for i in db.categories()]
+
+    all_categories = db.categories()
 
     categories = []
 
@@ -1097,6 +1114,7 @@ def admin_edit_event(id):
                                      start_time,
                                      form.end_date.data,
                                      end_time,
+                                     form.repeated.data,
                                      form.location.data,
                                      form.category.data,
                                      form.cost.data,
@@ -1129,7 +1147,7 @@ def admin_edit_event(id):
         else:
             flash('Event Edit failed.')
 
-    return render_template('admin-edit-event.html', form=form, id=id, categories=categories, year=admin_year)
+    return render_template('admin-edit-event.html', form=form, id=id, categories=categories, all_categories=all_categories, year=admin_year)
 
 
 @app.route('/admin/events/new', methods=["GET", "POST"])
@@ -1160,6 +1178,7 @@ def admin_new():
                                      start_time,
                                      form.end_date.data,
                                      end_time,
+                                     form.repeated.data,
                                      form.location.data,
                                      form.category.data,
                                      form.cost.data,
@@ -1466,7 +1485,8 @@ def edit_event():
                          end_date=datetime.datetime.strptime(event['end_date'], '%Y-%m-%d'),
                          start_time=datetime.datetime.strptime(event['start_time'], '%H:%M'),
                          end_time=datetime.datetime.strptime(event['end_time'], '%H:%M'),
-                         cost=evnet['cost'],
+                         repeated=event['repeated'],
+                         cost=event['cost'],
                          contact_name=event['contact_name'],
                          contact_email=event['contact_email'],
                          contact_phone=event['contact_phone'],
@@ -1476,6 +1496,8 @@ def edit_event():
                          old_photo=event['photo'])
 
     form.category.choices = [(i['id'], i['title']) for i in db.categories()]
+
+    all_categories = db.categories()
 
     categories = []
 
@@ -1523,6 +1545,7 @@ def edit_event():
                                      start_time,
                                      form.end_date.data,
                                      end_time,
+                                     form.repeated.data,
                                      form.location.data,
                                      form.category.data,
                                      form.cost.data,
@@ -1537,7 +1560,7 @@ def edit_event():
         else:
             return redirect(url_for('edit_result', code="failure"))
 
-    return render_template('edit-event.html', form=form, id=event['id'], categories=categories)
+    return render_template('edit-event.html', form=form, id=event['id'], categories=categories, all_categories=all_categories)
 
 
 @app.route('/events/login', methods=["GET", "POST"])

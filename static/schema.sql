@@ -1,3 +1,4 @@
+
 DROP TABLE IF EXISTS event;
 CREATE TABLE event
 (
@@ -10,20 +11,17 @@ CREATE TABLE event
   start_time      TIME NOT NULL,
   end_date        DATE NOT NULL,
   end_time        TIME NOT NULL,
-  cost            INTEGER DEFAULT 0,
+  repeated        TEXT DEFAULT 'daily',
+  cost            TEXT DEFAULT NULL,
   contact_name    TEXT NOT NULL,
   contact_email   TEXT NOT NULL,
-  contact_phone   TEXT NOT NULL,
-  facebook        TEXT DEFAULT NULL,
-  twitter         TEXT DEFAULT NULL,
-  instagram       TEXT DEFAULT NULL,
+  contact_phone   TEXT DEFAULT NULL,
   url             TEXT DEFAULT NULL,
   photo           TEXT DEFAULT '',
   password        TEXT NOT NULL,
   verified        INTEGER DEFAULT 0,
   created_at      DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-
 
 DROP TABLE IF EXISTS category;
 CREATE TABLE category
@@ -56,20 +54,15 @@ CREATE TABLE edit_event
   start_time      TIME NOT NULL,
   end_date        DATE NOT NULL,
   end_time        TIME NOT NULL,
-  cost            INTEGER DEFAULT 0,
+  repeated        TEXT DEFAULT 'daily',
+  cost            TEXT DEFAULT NULL,
   contact_name    TEXT NOT NULL,
   contact_email   TEXT NOT NULL,
-  contact_phone   TEXT NOT NULL,
-  facebook        TEXT DEFAULT NULL,
-  twitter         TEXT DEFAULT NULL,
-  instagram       TEXT DEFAULT NULL,
+  contact_phone   TEXT DEFAULT NULL,
   url             TEXT DEFAULT NULL,
   photo           TEXT DEFAULT '',
-  password        TEXT NOT NULL,
-  verified        INTEGER DEFAULT 0,
   created_at      DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-
 
 DROP TABLE IF EXISTS faq;
 CREATE TABLE faq
