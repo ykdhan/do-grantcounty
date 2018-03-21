@@ -23,6 +23,7 @@
     </div>
 
     <div id="menu-bar-mobile" class="mobile">
+        <a href="{{ url_for('admin_new') }}"><div class="menu-mobile"><i class="fas fa-plus"></i> Add Event</div></a>
         <a href="{{ url_for('admin_events') }}"><div class="menu-mobile now"><i class="far fa-calendar-alt"></i> Events</div></a>
         <a href="{{ url_for('admin_categories') }}"><div class="menu-mobile"><i class="fas fa-th-large"></i> Categories</div></a>
         <a href="{{ url_for('admin_questions') }}"><div class="menu-mobile"><i class="far fa-question-circle"></i> Questions</div></a>
@@ -128,10 +129,12 @@
                             </div>
                             {% if form.old_photo.data == '' %}
                                 <img alt="" id="preview-photo" src="">
+                                <div id="cancel-photo" class="cancel-photo" onclick="remove_photo()">Remove Photo</div>
                             {% else %}
-                                <img alt="" id="preview-photo" src="/static/event-pics/{{ form.old_photo.data }}">
+                                <img alt="" id="preview-photo" style="display: unset;" src="/static/event-pics/{{ form.old_photo.data }}">
+                                <div id="cancel-photo-remove" class="cancel-photo" style="display: inline-block;" onclick="remove_photo_first()">Remove Photo</div>
                             {% endif %}
-                            <div id="cancel-photo" onclick="remove_photo()">Remove Photo</div>
+                            {{ form.old_photo }}
                         </div>
                     </div>
                 </div>
@@ -148,14 +151,6 @@
     </div>
 
 <script>
-var select = new SlimSelect({
-    select: '#category',
-    placeholder: 'Category&nbsp;&nbsp; <span style="font-size: 0.8rem;">(choose all that apply)</span>',
-    showSearch: false,
-    allowDeselect: true,
-    closeOnSelect: false
-});
-select.set([ {% for c in categories %} '{{ c }}', {% endfor %}]);
 
 function upload_photo() {
     $('#photo').click();
@@ -214,6 +209,17 @@ function remove_photo() {
         document.getElementById('preview-photo').style.display = "none";
         document.getElementById('error-photo').style.display = "none";
         document.getElementById('cancel-photo').style.display = 'none';
+    }
+}
+function remove_photo_first() {
+    if (confirm('Would you like to remove photo?')) {
+        $('#photo').val('');
+        $('#old_photo').val('-1');
+        $('#preview-photo').attr('src', '');
+        has_photo = false;
+        document.getElementById('preview-photo').style.display = "none";
+        document.getElementById('error-photo').style.display = "none";
+        document.getElementById('cancel-photo-remove').style.display = 'none';
     }
 }
 
@@ -327,6 +333,8 @@ function checkbox() {
             document.getElementsByClassName('icon-repeated')[i].style.height = '0';
         }
         document.getElementById('form-repeated').style.height = '0';
+        var date = $('#start_date').val();
+        $('#end_date').val(date);
     } else  {
         $('#check-repeated').addClass('checked');
         for (var i = 0; i < document.getElementsByClassName('icon-repeated').length; i++) {
@@ -335,8 +343,6 @@ function checkbox() {
         document.getElementById('form-repeated').style.height = 'auto';
     }
     document.getElementById('check-repeated').value = 'daily';
-    var date = $('#start_date').val();
-    $('#end_date').val(date);
     repeated = !repeated;
 }
 

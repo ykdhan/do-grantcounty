@@ -169,14 +169,9 @@ months_whole = {
     'dec': 'December'
 }
 
-global filter_event
-filter_event = '0'
-
 global new_event
 new_event = ''
 
-global admin_filter_event
-admin_filter_event = '0'
 
 global admin_year
 admin_year = ''
@@ -210,8 +205,6 @@ def events2():
 @app.route('/events/<year>/<month>/', methods=["GET", "POST"])
 def event(year, month):
 
-    global filter_event
-
     if not session.get('filter-event'):
         session['filter-event'] = '0'
 
@@ -243,7 +236,7 @@ def event(year, month):
 
     events = db.events2(year, month)
     if session.get('filter-event') != '0':
-        events = db.filter_events(events, filter_event)
+        events = db.filter_events(events, session.get('filter-event'))
 
     event_dates = db.ar_events(events, year, month)[1]
     nums = []
@@ -491,7 +484,7 @@ def new():
                 title2 = "New Event: "+form.title.data
 
                 html2 = '<!DOCTYPE html><html lang="en-us"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"><link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Expanded:300,400,500,600,700" rel="stylesheet"><title></title><style>' \
-                        + 'body { width: 100%; height: 100%; background: none; padding: 1rem; margin: 0; font-size: 0.95rem; font-family: "Encode Sans Semi Expanded", sans-serif; font-weight: 300; color: #474747; text-align: center; line-height: 1.5; } p { margin: 0; padding: 0; margin-bottom: 0.5rem; text-align: left; } button { font-size: 0.95rem; font-family: "Encode Sans Semi Expanded", sans-serif; font-weight: 500; width: auto; cursor: pointer; background: #fff; border: 0.06rem solid #5f3bba; border-radius: 0.25rem; color: #5f3bba; padding: 0.6rem 1rem; margin: 1rem auto; } button:hover { background: #5f3bba; color: #fff; }' \
+                        + 'body { width: 100%; height: 100%; background: none; padding: 1rem; margin: 0; font-size: 0.95rem; font-family: "Encode Sans Semi Expanded", sans-serif; font-weight: 300; color: #474747; text-align: center; line-height: 1.5; } p { margin: 0; padding: 0; margin-bottom: 0.5rem; text-align: left; } button { font-size: 0.95rem; font-family: "Encode Sans Semi Expanded", sans-serif; font-weight: 500; width: auto; cursor: pointer; background: #fff; border: 0.06rem solid #5f3bba; border-radius: 0.25rem; color: #5f3bba; padding: 0.6rem 1rem; margin: 1rem auto; } button:hover { background: #5f3bba; color: #fff; } @media all and (min-width: 700px) {#frame {margin: 1rem;}}' \
                         + '#frame { width: 100%; max-width: 450px; margin: 3rem auto; } #logo { width: 11rem; height: auto; margin: 0 auto; } #dear { margin-top: 2.5rem; margin-bottom: 2.5rem; } #end-message { margin-top: 2.5rem;} #info { padding: 1.5rem; text-align: center; } #note { margin-top: 2rem; color: #cecece; font-size: 0.8rem; }' \
                         + '</style> </head><body><div id="frame">' \
                         + '<p id="dear">Dear DoGrantCounty.com,</p><p>New event has been added. Please go and verify the new event.</p>' \
@@ -518,7 +511,7 @@ def new():
 
                 html1 = '<!DOCTYPE html><html lang="en-us"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"><link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Expanded:300,400,500,600,700" rel="stylesheet"><title></title><style>' \
                         + 'body { width: 100%; height: 100%; background: none; padding: 1rem; margin: 0; font-size: 0.95rem; font-family: "Encode Sans Semi Expanded", sans-serif; font-weight: 300; color: #474747; text-align: center; line-height: 1.5; } p { margin: 0; padding: 0; margin-bottom: 0.5rem; text-align: left; }' \
-                        + 'a { font-size: inherit; font-weight: inherit; color: #5f3bba; text-decoration: none; } a:hover { color: #5f3bba; } button { font-size: 0.95rem; font-family: "Encode Sans Semi Expanded", sans-serif; font-weight: 500; width: auto; cursor: pointer; background: #fff; border: 0.06rem solid #5f3bba; border-radius: 0.25rem; color: #5f3bba; padding: 0.6rem 1rem; margin: 1rem auto; } button:hover { background: #5f3bba; color: #fff; } #frame { width: 100%; max-width: 450px; margin: 3rem auto; } #logo { width: 11rem; height: auto; margin: 0 auto; } #dear { margin-top: 2.5rem; margin-bottom: 2.5rem; } #end-message { margin-top: 2.5rem;} #info { padding: 1.5rem; text-align: center; } #note { margin-top: 2rem; color: #cecece; font-size: 0.8rem; }' \
+                        + 'a { font-size: inherit; font-weight: inherit; color: #5f3bba; text-decoration: none; } a:hover { color: #5f3bba; } button { font-size: 0.95rem; font-family: "Encode Sans Semi Expanded", sans-serif; font-weight: 500; width: auto; cursor: pointer; background: #fff; border: 0.06rem solid #5f3bba; border-radius: 0.25rem; color: #5f3bba; padding: 0.6rem 1rem; margin: 1rem auto; } button:hover { background: #5f3bba; color: #fff; } #frame { width: 100%; max-width: 450px; margin: 3rem auto; } #logo { width: 11rem; height: auto; margin: 0 auto; } #dear { margin-top: 2.5rem; margin-bottom: 2.5rem; } #end-message { margin-top: 2.5rem;} #info { padding: 1.5rem; text-align: center; } #note { margin-top: 2rem; color: #cecece; font-size: 0.8rem; } @media all and (min-width: 700px) {#frame {margin: 1rem;}}' \
                         + '</style></head><body><div id="frame">' \
                         + '<p id="dear">Dear '+ str(form.contact_name.data)+',</p><p>Thank you for adding an event to DoGrantCounty!<br>Our administrative team will review your event details before publishing to ensure it follows our event guidelines. We will do our best to post your event within 2-3 business days. Do not forget to share <a href="https://www.dograntcounty.com">www.DoGrantCounty.com</a> and your event on social media.<br>Thanks again, for using DoGrantCounty to promote the good things happening in Grant County, Indiana!</p>' \
                         + '<p id="end-message">The Do Grant County Team</p><p id="note"></p></div></body></html>'
@@ -842,7 +835,9 @@ def admin_event(year):
     if not current_user.is_authenticated or not current_user.is_admin:
         return redirect(url_for('admin'))
 
-    global admin_filter_event
+    if not session.get('admin-filter-event'):
+        session['admin-filter-event'] = '0'
+
     global admin_year
 
     admin_year = year
@@ -857,8 +852,8 @@ def admin_event(year):
 
     events = db.admin_events(year)
 
-    if admin_filter_event != '0':
-        events = db.admin_filter_events(events, admin_filter_event)
+    if session.get('admin-filter-event') != '0':
+        events = db.admin_filter_events(events, session.get('admin-filter-event'))
 
     event_dates = db.admin_arrange_events(events)[1]
 
@@ -881,13 +876,13 @@ def admin_event(year):
         print('search')
         return redirect(url_for('admin_search_event', keyword=search.keyword.data))
 
-    category = CategoryEventForm(category=admin_filter_event)
+    category = CategoryEventForm(category=session.get('admin-filter-event'))
     category.category.choices = [('0', 'All Categories')]
     for c in db.categories():
         category.category.choices.append((c['id'], c['title']))
 
     if category.validate_on_submit() and category.category_submit.data:
-        admin_filter_event = category.category.data
+        session['admin-filter-event'] = category.category.data
         return redirect(url_for('admin_event', year=year))
 
     return render_template('admin-event.html', year=year, controls=controls, events=events, pendings=pendings, edits=edits, nums=nums, event_dates=event_dates, search=search, category=category)
@@ -969,6 +964,11 @@ def admin_accept_event(id):
                         padding: 0.6rem 1rem; margin: 1rem auto; }
                     button:hover { background: #5f3bba; color: #fff; }
                     #frame { width: 100%; max-width: 450px; margin: 3rem auto; }
+                    @media all and (max-width: 700px) and (min-width: 50px) {
+                        #frame {
+                            margin: 1rem;
+                        }
+                    }
                     #logo { width: 11rem; height: auto; margin: 0 auto; }
                     #dear { margin-top: 2.5rem; margin-bottom: 2.5rem; } 
                     #end-message { margin-top: 2.5rem;}        
@@ -1135,6 +1135,8 @@ def admin_edit_event(id):
                 file.save(f)
             if event['photo'] != '':
                 name = event['photo']
+            if form.old_photo.data == '-1':
+                name = ''
 
             upload = db.upload_photo(id, name)
 
@@ -1536,6 +1538,8 @@ def edit_event():
                 file.save(f)
             if event['photo'] != '':
                 photo = event['photo']
+            if form.old_photo.data == '-1':
+                photo = ''
 
         result = db.edit_event(event['id'],
                                      form.title.data,

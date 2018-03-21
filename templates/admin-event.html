@@ -56,12 +56,12 @@
                         {{ category.category_submit(class="hidden") }}
                     </form>
                 </div>
-                <div class="flex flex-center text-right"><a href="{{ url_for('admin_new') }}"><button class="button-control right" id="event-add-mobile"><i class="fas fa-plus"></i></button></a></div>
             </div>
         </div>
     </div>
 
     <div id="menu-bar-mobile" class="mobile">
+        <a href="{{ url_for('admin_new') }}"><div class="menu-mobile"><i class="fas fa-plus"></i> Add Event</div></a>
         <a href="{{ url_for('admin_events') }}"><div class="menu-mobile now"><i class="far fa-calendar-alt"></i> Events</div></a>
         <a href="{{ url_for('admin_categories') }}"><div class="menu-mobile"><i class="fas fa-th-large"></i> Categories</div></a>
         <a href="{{ url_for('admin_questions') }}"><div class="menu-mobile"><i class="far fa-question-circle"></i> Questions</div></a>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="flex flex-center text-right">
                         <div class="settings">
-                            <a href="/admin/events/accept/{{ e.id }}"><i class="fas fa-check-circle"></i></a>
+                            <span onclick="accept_event('{{ e.id }}')"><i class="fas fa-check-circle"></i></span>
                             <span onclick="delete_event('{{ e.id }}')"><i class="fas fa-times-circle"></i></span>
                         </div>
                     </div>
@@ -275,6 +275,11 @@ function more() {
         document.getElementById('arrow').style.transform = 'rotate(180deg)';
     }
     more_status = !more_status;
+}
+
+function accept_event(id) {
+    document.getElementById('event-'+id).innerHTML = '<div id="loading-div-show"><div class="loading"><div></div><div></div><div></div><div></div></div></div>';
+    window.location.href = '/admin/events/accept/'+id;
 }
 
 function delete_event(id) {

@@ -23,6 +23,7 @@
     </div>
 
     <div id="menu-bar-mobile" class="mobile">
+        <a href="{{ url_for('admin_new') }}"><div class="menu-mobile"><i class="fas fa-plus"></i> Add Event</div></a>
         <a href="{{ url_for('admin_events') }}"><div class="menu-mobile"><i class="far fa-calendar-alt"></i> Events</div></a>
         <a href="{{ url_for('admin_categories') }}"><div class="menu-mobile now"><i class="fas fa-th-large"></i> Categories</div></a>
         <a href="{{ url_for('admin_questions') }}"><div class="menu-mobile"><i class="far fa-question-circle"></i> Questions</div></a>

@@ -24,6 +24,7 @@
     </div>
 
     <div id="menu-bar-mobile" class="mobile">
+        <a href="{{ url_for('admin_new') }}"><div class="menu-mobile"><i class="fas fa-plus"></i> Add Event</div></a>
         <a href="{{ url_for('admin_events') }}"><div class="menu-mobile now"><i class="far fa-calendar-alt"></i> Events</div></a>
         <a href="{{ url_for('admin_categories') }}"><div class="menu-mobile"><i class="fas fa-th-large"></i> Categories</div></a>
         <a href="{{ url_for('admin_questions') }}"><div class="menu-mobile"><i class="far fa-question-circle"></i> Questions</div></a>
@@ -80,6 +81,7 @@
                                     <div class="cost">{{ e.cost }}</div>
                                 {% endif %}
                                 <div class="description">{{ e.description }}</div>
+                                <div class="description">Password: <b>{{ e.password }}</b></div>
                             </div>
                             <div class="flex-3 text-left padding">
                                 <div class="location"><i class="fas fa-map-marker-alt"></i> <a class="link" target="_blank" href="https://maps.google.com/?q={{ e.location }}">{{ e.location }}</a></div>
@@ -89,7 +91,11 @@
                                     <div class="date"><i class="far fa-calendar"></i> {{ e.start_date }} - {{ e.end_date }}</div>
                                 {% endif %}
                                 <div class="time mobile"><i class="far fa-clock"></i> {{ e.start_time }} - {{ e.end_time }}</div>
-                                <div class="phone"><i class="fas fa-phone"></i> <a class="link" target="_blank" href="tel:{{ e.contact_phone }}">{{ e.contact_phone }}</a></div>
+                                <div class="phone"><i class="fas fa-user"></i> {{ e.contact_name }}</div>
+                                <div class="phone"><i class="far fa-envelope"></i> <a class="link" href="mailto:{{ e.contact_email }}">{{ e.contact_email }}</a></div>
+                                {% if e.contact_phone != "" %}
+                                    <div class="phone"><i class="fas fa-phone"></i> <a class="link" target="_blank" href="tel:{{ e.contact_phone }}">{{ e.contact_phone }}</a></div>
+                                {% endif %}
                                 {% if e.url != "" %}
                                     <div class="url"><i class="fas fa-globe"></i> <a class="link" target="_blank" href="//{{ e.url }}">{{ e.url }}</a></div>
                                 {% endif %}

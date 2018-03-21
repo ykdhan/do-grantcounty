@@ -23,7 +23,8 @@
     </div>
 
     <div id="menu-bar-mobile" class="mobile">
-        <a href="{{ url_for('admin_events') }}"><div class="menu-mobile now"><i class="far fa-calendar-alt"></i> Events</div></a>
+        <a href="{{ url_for('admin_new') }}"><div class="menu-mobile now"><i class="fas fa-plus"></i> Add Event</div></a>
+        <a href="{{ url_for('admin_events') }}"><div class="menu-mobile"><i class="far fa-calendar-alt"></i> Events</div></a>
         <a href="{{ url_for('admin_categories') }}"><div class="menu-mobile"><i class="fas fa-th-large"></i> Categories</div></a>
         <a href="{{ url_for('admin_questions') }}"><div class="menu-mobile"><i class="far fa-question-circle"></i> Questions</div></a>
         <a href="{{ url_for('admin_settings') }}"><div class="menu-mobile"><i class="fas fa-cog"></i> Settings</div></a>
@@ -87,6 +88,9 @@
                         <div class="flex text-right-mobile icon"><i class="far fa-calendar"></i>{{ form.start_date(class_="", onchange="choose_start_date()", pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}") }}</div>
                         <div class="flex text-left-mobile"><div class="checkbox-field"><span>Repeated?</span><div id="check-repeated" class="checkbox" onclick="checkbox()"><i class="fas fa-check"></i></div></div></div>
                     </div>
+                    <div class="flex-box-mobile icon" id="form-repeated-label">
+                        <div class="flex"><div class="repeated-label">Until...</div></div>
+                    </div>
                     <div class="flex-box-mobile icon" id="form-repeated">
                         <div class="flex text-right-mobile"><i class="fas fa-calendar icon-repeated"></i>{{ form.end_date(class_="", pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}") }}</div>
                         <div class="flex text-left-mobile"><i class="fas fa-sync-alt icon-repeated"></i>{{ form.repeated(class="") }}</div>
@@ -122,7 +126,10 @@
                     </div>
                 </div>
                 <div class="flex-box-mobile">
-                    {{ form.submit(class="submit") }}
+                    <div id="loading-div">
+                        <div class="loading"><div></div><div></div><div></div><div></div></div>
+                    </div>
+                    {{ form.submit(class="submit",onclick="form_submit()") }}
                 </div>
                 <br>
                 <a href="{{ url_for('events') }}" class="link">Cancel</a>
@@ -301,17 +308,24 @@ function checkbox() {
             document.getElementsByClassName('icon-repeated')[i].style.height = '0';
         }
         document.getElementById('form-repeated').style.height = '0';
+        document.getElementById('form-repeated-label').style.height = '0';
+        var date = $('#start_date').val();
+        $('#end_date').val(date);
     } else  {
         $('#check-repeated').addClass('checked');
         for (var i = 0; i < document.getElementsByClassName('icon-repeated').length; i++) {
             document.getElementsByClassName('icon-repeated')[i].style.height = 'auto';
         }
         document.getElementById('form-repeated').style.height = 'auto';
+        document.getElementById('form-repeated-label').style.height = 'auto';
     }
     document.getElementById('check-repeated').value = 'daily';
-    var date = $('#start_date').val();
-    $('#end_date').val(date);
     repeated = !repeated;
+}
+
+function form_submit() {
+    document.getElementById('submit').style.display = 'none';
+    document.getElementById('loading-div').style.display = 'block';
 }
 
 
